@@ -2,3 +2,54 @@
 .App-link {
   color: #61dafb;
 }
+
+html{
+  background-image: url(./images/star-wars-backgrounds-25.jpg);
+}
+
+.findBtn{
+  margin: 1em;
+  width: 300px;
+  height: 50px;
+  border-radius: 10px;
+  border: 1px solid transparent;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: larger;
+  font-weight: 700;
+  color: rgb(80, 78, 78);
+  outline: none;
+}
+
+.findBtn:hover{
+  outline: none;
+  cursor: pointer;
+
+}
+
+h2{ 
+  color: rgb(243, 223, 43);
+  font-size: 4em;
+  margin: 0px;
+  padding: 0.2em;
+}
+
+li, h1{
+  color: white;
+}
+
+.resultContainer{
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.resultbox{
+  border: 4px rgb(243, 223, 43) solid;
+  width: 600px;
+  height: 260px;
+  border-radius: 25px;
+}
+
