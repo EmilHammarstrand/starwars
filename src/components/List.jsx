@@ -1,36 +1,52 @@
 import React from 'react';
 import axios from 'axios';
 
-export default class List extends React.Component{
-    state = {
-        peopleList: []
+ class List extends React.Component {
+    constructor(props){
+        super(props);
+        this.state = {
+            peopleList: [],
+            search: ""
+        }
     }
 
     componentDidMount() {
-        const baseUrl = 'https://swapi.dev/api/';
-        
-        
-        axios.get(baseUrl + 'planets')
-        .then(response => {
-            console.log("PLANETS: ", response.data)
-            this.setState( {peopleList: response.data.results})
-        })
+        this.peopleListFromApi();
+    }
+
+    peopleListFromApi() {
+        const baseUrl = 'https://swapi.dev/api/'
 
         axios.get(baseUrl + 'people')
         .then(response => {
-            console.log("axios response: ", response.data)
-            this.setState( {peopleList: response.data.results})
+            let peopleList = response.data.results.map((person, i) => {
+                return(
+                    <main key={i}>
+                            <ul key={i}>
+                                {<li key={i}>{'('+person.gender+') '+person.name+' is '+person.height+' cm tall, got '+person.eye_color+' eyes and is born '+person.birth_year}</li>}
+                            </ul>
+                    </main>
+                )
+            })
+            this.setState({ peopleList: peopleList})
         })
-}
+    }
+
+    
+    onchange = e => {
+        this.setState({ search: e.target.value});
+    }
 
     render(){
         return(
-            <main>   
-                <h1>Names: </h1>
+            <main>
                     <ul>
-                        {this.state.peopleList.map((person, i) => <li key={i}>{person.name + " is " + person.height + " cm long"}</li>)}
+                        {this.state.peopleList}
                     </ul>
-            </main>
+                <input className="search" placeholder="Search the universe..." type="text" onChange={this.onchange}></input> 
+            </main> 
         )
     }
 }
+
+export default List;

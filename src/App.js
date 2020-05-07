@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 
 import List from './components/List'
+import Search from './components/Search'
 
 const App = () => (
     <main>
@@ -10,7 +11,8 @@ const App = () => (
         <div className="resultbox">
           <List />
         </div>
-        <button className="findBtn">Find character</button>
+        <button className="findBtn">Add character</button>
+        <Search />
       </div>
     </main>
 );
