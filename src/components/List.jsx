@@ -11,40 +11,44 @@ import axios from 'axios';
     }
 
     componentDidMount() {
-        this.peopleListFromApi();
+        this.dataFromApi();
     }
 
-    peopleListFromApi() {
+    dataFromApi() {
         const baseUrl = 'https://swapi.dev/api/'
-
+        
         axios.get(baseUrl + 'people')
         .then(response => {
-            let peopleList = response.data.results.map((person, i) => {
-                return(
-                    <main key={i}>
-                            <ul key={i}>
-                                {<li key={i}>{'('+person.gender+') '+person.name+' is '+person.height+' cm tall, got '+person.eye_color+' eyes and is born '+person.birth_year}</li>}
-                            </ul>
-                    </main>
-                )
-            })
+            const peopleList = response.data.results || []
             this.setState({ peopleList: peopleList})
         })
     }
 
-    
-    onchange = e => {
-        this.setState({ search: e.target.value});
+    onBtnPress = event => {
+        this.setState({ search: event.target.value}); 
+    }
+
+    filterPerson = person => {
+        let personInfo = person.name.toUpperCase().indexOf(this.state.search.toUpperCase()) > -1
+            || person.height.toUpperCase().indexOf(this.state.search.toUpperCase()) > -1
+            || person.gender.toUpperCase().indexOf(this.state.search.toUpperCase()) > -1
+            || person.eye_color.toUpperCase().indexOf(this.state.search.toUpperCase()) > -1 
+            || person.birth_year.toUpperCase().indexOf(this.state.search.toUpperCase()) > -1;
+        return personInfo;
     }
 
     render(){
         return(
             <main>
-                    <ul>
-                        {this.state.peopleList}
-                    </ul>
-                <input className="search" placeholder="Search the universe..." type="text" onChange={this.onchange}></input> 
-            </main> 
+                <ul>
+                    {this.state.peopleList.filter(this.filterPerson).map((person, id) => (
+                        <li key={id}>
+                            {`(${person.gender}) ${person.name} is ${person.height} cm tall, got ${person.eye_color} eyes and is born ${person.birth_year}`}
+                        </li>
+                    ))}
+                </ul>
+                <input className="search" placeholder="Search the universe..." type="text" value={this.state.search} onChange={this.onBtnPress}></input> 
+            </main>
         )
     }
 }
