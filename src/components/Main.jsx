@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 
+
  class List extends React.Component {
     constructor(props){
         super(props);
@@ -30,7 +31,7 @@ import axios from 'axios';
 
     filterPerson = person => {
         let personInfo = person.name.toUpperCase().indexOf(this.state.search.toUpperCase()) > -1
-            || person.height.toUpperCase().indexOf(this.state.search.toUpperCase()) > -1
+            || person.height.indexOf(this.state.search) > -1
             || person.gender.toUpperCase().indexOf(this.state.search.toUpperCase()) > -1
             || person.eye_color.toUpperCase().indexOf(this.state.search.toUpperCase()) > -1 
             || person.birth_year.toUpperCase().indexOf(this.state.search.toUpperCase()) > -1;
@@ -40,14 +41,19 @@ import axios from 'axios';
     render(){
         return(
             <main>
-                <ul>
-                    {this.state.peopleList.filter(this.filterPerson).map((person, id) => (
-                        <li key={id}>
-                            {`(${person.gender}) ${person.name} is ${person.height} cm tall, got ${person.eye_color} eyes and is born ${person.birth_year}`}
-                        </li>
-                    ))}
-                </ul>
-                <input className="search" placeholder="Search the universe..." type="text" value={this.state.search} onChange={this.onBtnPress}></input> 
+                <div className="resultbox">
+                    <ul>
+                        {this.state.peopleList.filter(this.filterPerson).map((person, id) => (
+                            <li key={id}>
+                                {`(${person.gender}) ${person.name} is ${person.height} cm tall, got ${person.eye_color} eyes and is born ${person.birth_year}`}
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+                <div className="Form">
+                    {<input className="search" placeholder="Search the universe..." type="text" value={this.state.search} onChange={this.onBtnPress}></input>}
+                    <button className="findBtn">Add character</button>
+                </div>
             </main>
         )
     }

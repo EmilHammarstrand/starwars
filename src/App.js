@@ -1,18 +1,14 @@
 import React from 'react';
 import './App.css';
 
-import List from './components/List'
-import Search from './components/Search'
+import Main from './components/Main'
+
 
 const App = () => (
     <main>
       <div className="resultContainer">
-      <h2>Star Wars</h2>
-        <div className="resultbox">
-          <List />
-        </div>
-        <button className="findBtn">Add character</button>
-        <Search />
+        <h2>Star Wars</h2>
+            <Main />
       </div>
     </main>
 );
