@@ -51,7 +51,12 @@ import axios from 'axios';
                     </ul>
                 </div>
                 <div className="Form">
-                    {<input className="search" placeholder="Search the universe..." type="text" value={this.state.search} onChange={this.onBtnPress}></input>}
+                    <input className="search" placeholder="Search the universe!" type="text" value={this.state.search} onChange={this.onBtnPress}></input>
+                    <h3>Make you own character!</h3>
+                    <input className="search special" placeholder="Name..." type="text" ></input>
+                    <input className="search" placeholder="Age..."></input>
+                    <input className="search" placeholder="Birthyear..."></input>
+                    <input className="search" placeholder="Gender..."></input>
                     <button className="findBtn">Add character</button>
                 </div>
             </main>
