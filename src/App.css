@@ -144,9 +144,13 @@ input{
     border-radius: 10px;
     background-color: #FFF;
     background-image: -webkit-gradient(linear,
-                                       200% 94%,
-                                       100% 78%,
+                                       200% 100%,
+                                       100% 70%,
                                        from(#b9b9b9),
                                        to(/* #00ccff */#ff0000),
                                        color-stop(.7,#b9b9b9))
+}
+
+.findBtn:disabled {
+  background-color: grey;
 }
