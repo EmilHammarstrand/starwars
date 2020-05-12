@@ -32,8 +32,8 @@ import axios from 'axios';
         })
     }
 
-    onClick = () => {
-        this.addFavorites();
+    onFavBtnClick = x => {
+        this.addFavorites(x);
         this.setState({showFavorites: true})
     }
 
@@ -50,8 +50,8 @@ import axios from 'axios';
         this.setState({ search: event.target.value}); 
     }
 
-    addFavorites = () => {
-        let favoriteList = this.state.favoriteList.concat(this.state.peopleList)
+    addFavorites = x => {
+        let favoriteList = [...this.state.favoriteList, x]
         this.setState({ favoriteList })
     }
 
@@ -68,7 +68,6 @@ import axios from 'axios';
                 gender: this.state.genderFromInput,
                 eye_color: this.state.eyecolorFromInput}]
         }))
-
         this.setState({showFavorites: true})
     }
 
@@ -82,13 +81,14 @@ import axios from 'axios';
     }
 
     render(){
+        console.log(this.state.favoriteList)
         return(
             <main>
                 <div className="resultbox">
                     <ul>
                         {this.state.peopleList.filter(this.filterPerson).map( (person, id) => (
                             <li key={id}>
-                                <button className="fav" onClick={this.onClick}>Fav</button>
+                                <button className="fav" onClick={ () => this.onFavBtnClick(person)}>Fav</button>
                                 {`(${person.gender}) ${person.name} is ${person.height} cm tall, got ${person.eye_color} eyes and is born ${person.birth_year}`}
                             </li>
                         ))}
