@@ -61,8 +61,8 @@ ul{
 
 .resultbox{
   border: 4px rgb(243, 223, 43) solid;
-  width: 600px;
-  height: 260px;
+  width: 620px;
+  height: 250px;
   border-radius: 25px;
   overflow: auto;
 }

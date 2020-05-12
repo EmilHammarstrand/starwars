@@ -1,7 +1,6 @@
 import React from 'react';
 import axios from 'axios';
 
-
  class List extends React.Component {
     constructor(props){
         super(props);
@@ -86,7 +85,7 @@ import axios from 'axios';
             <main>
                 <div className="resultbox">
                     <ul>
-                        {this.state.peopleList.filter(this.filterPerson).map( (person, id) => (
+                        {this.state.peopleList.filter(this.filterPerson).map((person, id) => (
                             <li key={id}>
                                 <button className="fav" onClick={ () => this.onFavBtnClick(person)}>Fav</button>
                                 {`(${person.gender}) ${person.name} is ${person.height} cm tall, got ${person.eye_color} eyes and is born ${person.birth_year}`}
@@ -94,7 +93,7 @@ import axios from 'axios';
                         ))}
                         
                         {this.state.showFavorites && <h3 className="favoriteHeader">Favorites</h3>}
-                        {this.state.favoriteList.map((person, id) => (
+                        {this.state.favoriteList.filter(this.filterPerson).map((person, id) => (
                             <li key={id} className="favList">
                                 {`(${person.gender}) ${person.name} is ${person.height} cm tall, got ${person.eye_color} eyes and is born ${person.birth_year}`}
                             </li>
