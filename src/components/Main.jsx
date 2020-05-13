@@ -80,7 +80,6 @@ import axios from 'axios';
     }
 
     render(){
-        console.log(this.state.favoriteList)
         return(
             <main>
                 <div className="resultbox">
