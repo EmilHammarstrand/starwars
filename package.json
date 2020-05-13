@@ -1,5 +1,5 @@
 {
-  "homepage": "http://{EmilHammarstrand}.github.io/{starwars}",
+  "homepage": "http://emilhammarstrand.github.io/starwars",
   "name": "starwars",
   "version": "0.1.0",
   "private": true,
